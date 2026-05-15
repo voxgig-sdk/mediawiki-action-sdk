@@ -1,0 +1,31 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://www.mediawiki.org/wiki/API:Main_page#"
+      }
+      description: "A web service providing access to wiki features like authentication, page operations, and search. It offers meta information about the wiki and logged-in user."
+      license: {
+        name: "GPL-2.0-or-later"
+        url: "https://www.gnu.org/licenses/gpl-2.0.html"
+      }
+      servers: [
+        {
+          description: "Wikipedia English API (example server)"
+          url: "https://en.wikipedia.org/w"
+        }
+        {
+          description: "MediaWiki.org API"
+          url: "https://www.mediawiki.org/w"
+        }
+      ]
+      title: "MediaWiki Action API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

@@ -1,0 +1,710 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "MediaWiki Action API",
+    "description": "A web service providing access to wiki features like authentication, page operations, and search. It offers meta information about the wiki and logged-in user.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://www.mediawiki.org/wiki/API:Main_page#"
+    },
+    "license": {
+      "name": "GPL-2.0-or-later",
+      "url": "https://www.gnu.org/licenses/gpl-2.0.html"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://en.wikipedia.org/w",
+      "description": "Wikipedia English API (example server)"
+    },
+    {
+      "url": "https://www.mediawiki.org/w",
+      "description": "MediaWiki.org API"
+    }
+  ],
+  "paths": {
+    "/api.php": {
+      "get": {
+        "summary": "Execute API action",
+        "description": "Main API endpoint that accepts various action parameters to perform different operations on the wiki",
+        "operationId": "executeAction",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": true,
+            "description": "The action to perform",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "query",
+                "login",
+                "parse",
+                "opensearch",
+                "edit",
+                "delete",
+                "move",
+                "rollback",
+                "upload",
+                "emailuser",
+                "watch",
+                "patrol",
+                "purge",
+                "help"
+              ]
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "The format of the output",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml",
+                "php",
+                "yaml",
+                "rawfm",
+                "jsonfm",
+                "xmlfm"
+              ],
+              "default": "json"
+            }
+          },
+          {
+            "name": "titles",
+            "in": "query",
+            "description": "A list of titles to work on (for query action)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageids",
+            "in": "query",
+            "description": "A list of page IDs to work on",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "prop",
+            "in": "query",
+            "description": "Which properties to get for the queried pages",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "list",
+            "in": "query",
+            "description": "Which lists to get",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "meta",
+            "in": "query",
+            "description": "Which metadata to get",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "siteinfo",
+                "userinfo",
+                "allmessages",
+                "tokens"
+              ]
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search for page titles or text matching this value",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "How many results to return",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "continue",
+            "in": "query",
+            "description": "Continue token for pagination",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "redirects",
+            "in": "query",
+            "description": "Automatically resolve redirects",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "batchcomplete": {
+                      "type": "string"
+                    },
+                    "continue": {
+                      "type": "object",
+                      "additionalProperties": true
+                    },
+                    "query": {
+                      "type": "object",
+                      "properties": {
+                        "pages": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "object",
+                            "properties": {
+                              "pageid": {
+                                "type": "integer"
+                              },
+                              "ns": {
+                                "type": "integer"
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "extract": {
+                                "type": "string"
+                              },
+                              "revisions": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "search": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "ns": {
+                                "type": "integer"
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "pageid": {
+                                "type": "integer"
+                              },
+                              "snippet": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "userinfo": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "anon": {
+                              "type": "boolean"
+                            },
+                            "rights": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "info": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "queryPage": {
+                    "summary": "Query page information",
+                    "value": {
+                      "batchcomplete": "",
+                      "query": {
+                        "pages": {
+                          "15580374": {
+                            "pageid": 15580374,
+                            "ns": 0,
+                            "title": "Main Page",
+                            "extract": "Wikipedia is a free online encyclopedia..."
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "userInfo": {
+                    "summary": "Get user information",
+                    "value": {
+                      "batchcomplete": "",
+                      "query": {
+                        "userinfo": {
+                          "id": 12345,
+                          "name": "ExampleUser",
+                          "rights": [
+                            "read",
+                            "edit",
+                            "createpage"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "info": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string",
+                          "example": "notloggedin"
+                        },
+                        "info": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "API"
+        ]
+      },
+      "post": {
+        "summary": "Execute API action (POST)",
+        "description": "Main API endpoint for write operations that require POST method",
+        "operationId": "executeActionPost",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "action"
+                ],
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "login",
+                      "edit",
+                      "delete",
+                      "move",
+                      "rollback",
+                      "upload",
+                      "patrol",
+                      "purge"
+                    ],
+                    "description": "The action to perform"
+                  },
+                  "format": {
+                    "type": "string",
+                    "enum": [
+                      "json",
+                      "xml",
+                      "php"
+                    ],
+                    "default": "json"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Title of the page to edit"
+                  },
+                  "text": {
+                    "type": "string",
+                    "description": "Page content"
+                  },
+                  "summary": {
+                    "type": "string",
+                    "description": "Edit summary"
+                  },
+                  "token": {
+                    "type": "string",
+                    "description": "CSRF token for authentication"
+                  },
+                  "lgname": {
+                    "type": "string",
+                    "description": "Username for login action"
+                  },
+                  "lgpassword": {
+                    "type": "string",
+                    "description": "Password for login action"
+                  },
+                  "lgtoken": {
+                    "type": "string",
+                    "description": "Login token"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "upload"
+                    ]
+                  },
+                  "filename": {
+                    "type": "string",
+                    "description": "Target filename"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "File to upload"
+                  },
+                  "token": {
+                    "type": "string",
+                    "description": "CSRF token"
+                  },
+                  "format": {
+                    "type": "string",
+                    "default": "json"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "edit": {
+                      "type": "object",
+                      "properties": {
+                        "result": {
+                          "type": "string"
+                        },
+                        "pageid": {
+                          "type": "integer"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "newrevid": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "login": {
+                      "type": "object",
+                      "properties": {
+                        "result": {
+                          "type": "string"
+                        },
+                        "lguserid": {
+                          "type": "integer"
+                        },
+                        "lgusername": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "info": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "editSuccess": {
+                    "summary": "Successful edit",
+                    "value": {
+                      "edit": {
+                        "result": "Success",
+                        "pageid": 12345,
+                        "title": "Example Page",
+                        "newrevid": 67890
+                      }
+                    }
+                  },
+                  "loginSuccess": {
+                    "summary": "Successful login",
+                    "value": {
+                      "login": {
+                        "result": "Success",
+                        "lguserid": 12345,
+                        "lgusername": "ExampleUser"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "info": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - insufficient permissions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "info": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "tags": [
+          "API"
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "session",
+        "description": "Session cookie obtained after successful login"
+      }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code"
+              },
+              "info": {
+                "type": "string",
+                "description": "Human-readable error message"
+              }
+            }
+          }
+        }
+      },
+      "Page": {
+        "type": "object",
+        "properties": {
+          "pageid": {
+            "type": "integer",
+            "description": "Unique page identifier"
+          },
+          "ns": {
+            "type": "integer",
+            "description": "Namespace ID"
+          },
+          "title": {
+            "type": "string",
+            "description": "Page title"
+          },
+          "extract": {
+            "type": "string",
+            "description": "Plain text extract of the page content"
+          },
+          "revisions": {
+            "type": "array",
+            "description": "Page revisions",
+            "items": {
+              "type": "object",
+              "properties": {
+                "revid": {
+                  "type": "integer"
+                },
+                "parentid": {
+                  "type": "integer"
+                },
+                "user": {
+                  "type": "string"
+                },
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "comment": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "UserInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "User ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "Username"
+          },
+          "anon": {
+            "type": "boolean",
+            "description": "Whether the user is anonymous"
+          },
+          "rights": {
+            "type": "array",
+            "description": "User rights",
+            "items": {
+              "type": "string"
+            }
+          },
+          "groups": {
+            "type": "array",
+            "description": "User groups",
+            "items": {
+              "type": "string"
+            }
+          },
+          "editcount": {
+            "type": "integer",
+            "description": "Number of edits"
+          },
+          "registrationdate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Registration date"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "API",
+      "description": "MediaWiki Action API operations",
+      "externalDocs": {
+        "description": "Official API documentation",
+        "url": "https://www.mediawiki.org/wiki/API:Main_page"
+      }
+    }
+  ],
+  "externalDocs": {
+    "description": "MediaWiki Action API Documentation",
+    "url": "https://www.mediawiki.org/wiki/API:Main_page#"
+  }
+}

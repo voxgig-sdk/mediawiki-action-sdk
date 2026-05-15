@@ -1,0 +1,42 @@
+{
+  "existing": {
+    "api": {
+      "API00": {
+        "batchcomplete": "s3c",
+        "continue": {},
+        "edit": {},
+        "error": {},
+        "login": {},
+        "query": {}
+      },
+      "API01": {
+        "batchcomplete": "s78",
+        "continue": {},
+        "edit": {},
+        "error": {},
+        "login": {},
+        "query": {}
+      },
+      "API02": {
+        "batchcomplete": "sb4",
+        "continue": {},
+        "edit": {},
+        "error": {},
+        "login": {},
+        "query": {}
+      }
+    }
+  },
+  "new": {
+    "api": {
+      "api_ref01": {
+        "batchcomplete": "sf0",
+        "continue": {},
+        "edit": {},
+        "error": {},
+        "login": {},
+        "query": {}
+      }
+    }
+  }
+}

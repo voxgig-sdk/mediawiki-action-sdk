@@ -1,0 +1,176 @@
+# Entity: api
+
+main: kit: entity: api: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "batchcomplete"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "continue"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "edit"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "error"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "login"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "query"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "api"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/api.php"
+          parts: [
+            "api.php"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "action"
+                orig: "action"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "continue"
+                orig: "continue"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "json"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 10
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "list"
+                orig: "list"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "meta"
+                orig: "meta"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "pageid"
+                orig: "pageid"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "prop"
+                orig: "prop"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "redirect"
+                orig: "redirect"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "search"
+                orig: "search"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "title"
+                orig: "title"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api.php"
+          parts: [
+            "api.php"
+          ]
+          select: {
+            exist: [
+              "action"
+              "continue"
+              "format"
+              "limit"
+              "list"
+              "meta"
+              "pageid"
+              "prop"
+              "redirect"
+              "search"
+              "title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
