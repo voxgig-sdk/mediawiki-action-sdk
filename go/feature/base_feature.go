@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/mediawiki-action-sdk/core"
+	"github.com/voxgig-sdk/mediawiki-action-sdk/go/core"
 )
 
 type BaseFeature struct {

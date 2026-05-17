@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/mediawiki-action-sdk"
-	"github.com/voxgig-sdk/mediawiki-action-sdk/core"
+	sdk "github.com/voxgig-sdk/mediawiki-action-sdk/go"
+	"github.com/voxgig-sdk/mediawiki-action-sdk/go/core"
 )
 
 func TestApiDirect(t *testing.T) {

@@ -1,10 +1,10 @@
 package voxgigmediawikiactionsdk
 
 import (
-	"github.com/voxgig-sdk/mediawiki-action-sdk/core"
-	"github.com/voxgig-sdk/mediawiki-action-sdk/entity"
-	"github.com/voxgig-sdk/mediawiki-action-sdk/feature"
-	_ "github.com/voxgig-sdk/mediawiki-action-sdk/utility"
+	"github.com/voxgig-sdk/mediawiki-action-sdk/go/core"
+	"github.com/voxgig-sdk/mediawiki-action-sdk/go/entity"
+	"github.com/voxgig-sdk/mediawiki-action-sdk/go/feature"
+	_ "github.com/voxgig-sdk/mediawiki-action-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/mediawiki-action-sdk/core"
+import "github.com/voxgig-sdk/mediawiki-action-sdk/go/core"
 
 func makeRequestUtil(ctx *core.Context) (*core.Response, error) {
 	if ctx.Out["request"] != nil {

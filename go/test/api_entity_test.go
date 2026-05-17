@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/mediawiki-action-sdk"
-	"github.com/voxgig-sdk/mediawiki-action-sdk/core"
+	sdk "github.com/voxgig-sdk/mediawiki-action-sdk/go"
+	"github.com/voxgig-sdk/mediawiki-action-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/mediawiki-action-sdk/go/utility/struct"
 )
 
 func TestApiEntity(t *testing.T) {

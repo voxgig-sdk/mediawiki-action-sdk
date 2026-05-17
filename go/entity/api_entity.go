@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/mediawiki-action-sdk/core"
+	"github.com/voxgig-sdk/mediawiki-action-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/mediawiki-action-sdk/go/utility/struct"
 )
 
 type ApiEntity struct {
