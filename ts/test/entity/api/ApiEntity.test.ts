@@ -119,7 +119,6 @@ function basicSetup(extra?: any) {
     'MEDIAWIKI_ACTION_TEST_API_ENTID': idmap,
     'MEDIAWIKI_ACTION_TEST_LIVE': 'FALSE',
     'MEDIAWIKI_ACTION_TEST_EXPLAIN': 'FALSE',
-    'MEDIAWIKI_ACTION_APIKEY': 'NONE',
   })
 
   idmap = env['MEDIAWIKI_ACTION_TEST_API_ENTID']
@@ -129,7 +128,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new MediawikiActionSDK(merge([
       {
-        apikey: env.MEDIAWIKI_ACTION_APIKEY,
       },
       extra
     ]))

@@ -99,14 +99,12 @@ func apiDirectSetup(mockres any) *apiDirectSetupResult {
 	env := envOverride(map[string]any{
 		"MEDIAWIKIACTION_TEST_API_ENTID": map[string]any{},
 		"MEDIAWIKIACTION_TEST_LIVE":    "FALSE",
-		"MEDIAWIKIACTION_APIKEY":       "NONE",
 	})
 
 	live := env["MEDIAWIKIACTION_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["MEDIAWIKIACTION_APIKEY"],
 		}
 		client := sdk.NewMediawikiActionSDK(mergedOpts)
 

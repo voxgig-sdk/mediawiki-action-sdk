@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://en.wikipedia.org/w',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },

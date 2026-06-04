@@ -62,14 +62,12 @@ function api_direct_setup(mockres)
   local env = runner.env_override({
     ["MEDIAWIKIACTION_TEST_API_ENTID"] = {},
     ["MEDIAWIKIACTION_TEST_LIVE"] = "FALSE",
-    ["MEDIAWIKIACTION_APIKEY"] = "NONE",
   })
 
   local live = env["MEDIAWIKIACTION_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["MEDIAWIKIACTION_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

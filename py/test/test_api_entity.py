@@ -93,7 +93,6 @@ def _api_basic_setup(extra):
         "MEDIAWIKIACTION_TEST_API_ENTID": idmap,
         "MEDIAWIKIACTION_TEST_LIVE": "FALSE",
         "MEDIAWIKIACTION_TEST_EXPLAIN": "FALSE",
-        "MEDIAWIKIACTION_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ def _api_basic_setup(extra):
     if env.get("MEDIAWIKIACTION_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("MEDIAWIKIACTION_APIKEY"),
             },
             extra or {},
         ])

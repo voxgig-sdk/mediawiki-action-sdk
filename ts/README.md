@@ -17,9 +17,7 @@ loading a specific record.
 ```ts
 import { MediawikiActionSDK } from 'mediawiki-action'
 
-const client = new MediawikiActionSDK({
-  apikey: process.env.MEDIAWIKI-ACTION_APIKEY,
-})
+const client = new MediawikiActionSDK({})
 ```
 
 ### 3. Load a api
@@ -92,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new MediawikiActionSDK({ apikey: '...' })
+const client = new MediawikiActionSDK()
 const testClient = client.tester()
 ```
 
@@ -128,7 +126,6 @@ const logger = {
 }
 
 const client = new MediawikiActionSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -139,7 +136,6 @@ Create a `.env.local` file at the project root:
 
 ```
 MEDIAWIKI-ACTION_TEST_LIVE=TRUE
-MEDIAWIKI-ACTION_APIKEY=<your-key>
 ```
 
 Then run:
@@ -157,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new MediawikiActionSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -168,7 +163,6 @@ new MediawikiActionSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
