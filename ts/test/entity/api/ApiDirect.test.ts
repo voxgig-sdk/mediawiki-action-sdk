@@ -74,12 +74,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'MEDIAWIKIACTION_TEST_API_ENTID': {},
     'MEDIAWIKIACTION_TEST_LIVE': 'FALSE',
+    'MEDIAWIKIACTION_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.MEDIAWIKIACTION_TEST_LIVE
 
   if (live) {
     const client = new MediawikiActionSDK({
+      apikey: env.MEDIAWIKIACTION_APIKEY,
     })
 
     let idmap: any = env['MEDIAWIKIACTION_TEST_API_ENTID']

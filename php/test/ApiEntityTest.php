@@ -86,6 +86,7 @@ function api_basic_setup($extra)
         "MEDIAWIKIACTION_TEST_API_ENTID" => $idmap,
         "MEDIAWIKIACTION_TEST_LIVE" => "FALSE",
         "MEDIAWIKIACTION_TEST_EXPLAIN" => "FALSE",
+        "MEDIAWIKIACTION_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,6 +98,7 @@ function api_basic_setup($extra)
     if ($env["MEDIAWIKIACTION_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["MEDIAWIKIACTION_APIKEY"],
             ],
             $extra ?? [],
         ]);

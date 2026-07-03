@@ -1,22 +1,8 @@
 # MediawikiAction SDK
 
-Read and edit Wikipedia and other MediaWiki wikis through a stable, multi-module HTTP API
+MediaWiki Action API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About MediaWiki Action API
-
-The [MediaWiki Action API](https://www.mediawiki.org/wiki/API:Main_page) is the long-standing HTTP interface exposed by every [MediaWiki](https://www.mediawiki.org/) installation, including [Wikipedia](https://en.wikipedia.org/) and the other [Wikimedia](https://www.wikimedia.org/) projects. All endpoints live under a single `api.php` entry point (for English Wikipedia, `https://en.wikipedia.org/w/api.php`), with the operation selected by the `action` query parameter.
-
-What you can do through the API:
-
-- Authenticate and manage users — `action=login`, `action=logout`, `action=createaccount`, `action=clientlogin`, plus token retrieval via `action=query&meta=tokens`.
-- Read and search content — `action=query` with `prop=revisions|extracts|info|links|categories|images`, `list=search|categorymembers|allpages|backlinks`, and `action=opensearch` for type-ahead suggestions.
-- Edit pages — `action=edit`, `action=move`, `action=delete`, `action=protect`, `action=rollback`, `action=upload`, `action=purge`.
-- Parse and expand wikitext — `action=parse`, `action=expandtemplates`.
-- Site metadata — `action=query&meta=siteinfo|userinfo|allmessages|filerepoinfo`.
-
-The API accepts both GET and POST (POST is required for write actions and large payloads) and can return JSON, JSONFM, XML, or PHP-serialized output via the `format` parameter. Anonymous reads work without credentials; edits require login plus a CSRF token. Cross-origin requests need the `origin` parameter. There is no fixed published rate limit on the public Wikimedia endpoints, but clients are expected to follow the [User-Agent policy](https://meta.wikimedia.org/wiki/User-Agent_policy) and avoid running requests in parallel against the same wiki.
 
 ## Try it
 
@@ -50,27 +36,31 @@ gem install mediawiki-action-sdk
 luarocks install mediawiki-action-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { MediawikiActionSDK } from 'mediawiki-action'
 
-const client = new MediawikiActionSDK({})
+const client = new MediawikiActionSDK({
+  apikey: process.env.MEDIAWIKI-ACTION_APIKEY,
+})
 
+// Load api data
+const api = await client.Api().load({})
+console.log(api.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Api** | The single `api.php` entry point that dispatches every MediaWiki Action — authentication, page queries, edits, search, and site metadata — based on the `action` parameter (for example `action=query`, `action=edit`, `action=login`, `action=opensearch`). | `/api.php` |
+| **Api** |  | `/api.php` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -110,15 +100,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from mediawikiaction_sdk import MediawikiActionSDK
 
-client = MediawikiActionSDK({})
+client = MediawikiActionSDK({
+    "apikey": os.environ.get("MEDIAWIKI-ACTION_APIKEY"),
+})
 
 
 # Load a specific api
-api, err = client.Api(None).load(
-    {"id": "example_id"}, None
-)
+api, err = client.Api().load({"id": "example_id"})
+print(api)
 ```
 
 ### PHP
@@ -127,13 +119,14 @@ api, err = client.Api(None).load(
 <?php
 require_once 'mediawikiaction_sdk.php';
 
-$client = new MediawikiActionSDK([]);
+$client = new MediawikiActionSDK([
+    "apikey" => getenv("MEDIAWIKI-ACTION_APIKEY"),
+]);
 
 
 // Load a specific api
-[$api, $err] = $client->Api(null)->load(
-    ["id" => "example_id"], null
-);
+[$api, $err] = $client->Api()->load(["id" => "example_id"]);
+print_r($api);
 ```
 
 ### Golang
@@ -141,8 +134,13 @@ $client = new MediawikiActionSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/mediawiki-action-sdk/go"
 
-client := sdk.NewMediawikiActionSDK(map[string]any{})
+client := sdk.NewMediawikiActionSDK(map[string]any{
+    "apikey": os.Getenv("MEDIAWIKI-ACTION_APIKEY"),
+})
 
+// Load api data
+api, err := client.Api(nil).Load(map[string]any{}, nil)
+fmt.Println(api)
 ```
 
 ### Ruby
@@ -150,13 +148,14 @@ client := sdk.NewMediawikiActionSDK(map[string]any{})
 ```ruby
 require_relative "MediawikiAction_sdk"
 
-client = MediawikiActionSDK.new({})
+client = MediawikiActionSDK.new({
+  "apikey" => ENV["MEDIAWIKI-ACTION_APIKEY"],
+})
 
 
 # Load a specific api
-api, err = client.Api(nil).load(
-  { "id" => "example_id" }, nil
-)
+api, err = client.Api().load({ "id" => "example_id" })
+puts api
 ```
 
 ### Lua
@@ -164,13 +163,14 @@ api, err = client.Api(nil).load(
 ```lua
 local sdk = require("mediawiki-action_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("MEDIAWIKI-ACTION_APIKEY"),
+})
 
 
 -- Load a specific api
-local api, err = client:Api(nil):load(
-  { id = "example_id" }, nil
-)
+local api, err = client:Api():load({ id = "example_id" })
+print(api)
 ```
 
 ## Unit testing in offline mode
@@ -189,25 +189,21 @@ const result = await client.Api().load({ id: 'test01' })
 ### Python
 
 ```python
-client = MediawikiActionSDK.test(None, None)
-result, err = client.Api(None).load(
-    {"id": "test01"}, None
-)
+client = MediawikiActionSDK.test()
+result, err = client.Api().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = MediawikiActionSDK::test(null, null);
-[$result, $err] = $client->Api(null)->load(
-    ["id" => "test01"], null
-);
+$client = MediawikiActionSDK::test();
+[$result, $err] = $client->Api()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Api(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -216,19 +212,15 @@ result, err := client.Api(nil).Load(
 ### Ruby
 
 ```ruby
-client = MediawikiActionSDK.test(nil, nil)
-result, err = client.Api(nil).load(
-  { "id" => "test01" }, nil
-)
+client = MediawikiActionSDK.test
+result, err = client.Api().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Api(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Api():load({ id = "test01" })
 ```
 
 ## How it works
@@ -332,16 +324,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the MediaWiki Action API
-
-- Upstream: [https://www.mediawiki.org/wiki/API:Main_page](https://www.mediawiki.org/wiki/API:Main_page)
-- API docs: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Action_API](https://www.mediawiki.org/wiki/Special:MyLanguage/API:Action_API)
-
-- The MediaWiki software and its Action API are licensed under [GPL-2.0-or-later](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
-- Wiki content on Wikipedia and most Wikimedia projects is separately licensed under [CC BY-SA](https://creativecommons.org/licenses/by-sa/4.0/) and/or [GFDL](https://www.gnu.org/licenses/fdl-1.3.html) — attribution is required when reusing article text.
-- Clients should set a descriptive `User-Agent` per the [Wikimedia User-Agent policy](https://meta.wikimedia.org/wiki/User-Agent_policy).
-- Respect the [Wikimedia API etiquette](https://www.mediawiki.org/wiki/API:Etiquette) for request rates and concurrency.
 
 ---
 

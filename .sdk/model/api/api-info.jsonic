@@ -24,29 +24,7 @@ main: {
       ]
       title: "MediaWiki Action API"
       version: "1.0.0"
-      tagline: "Read and edit Wikipedia and other MediaWiki wikis through a stable, multi-module HTTP API"
-      homepage: "https://www.mediawiki.org/wiki/API:Main_page"
-      docs_url: "https://www.mediawiki.org/wiki/Special:MyLanguage/API:Action_API"
-      license_short: "GPL-2.0-or-later"
-      license_md: `- The MediaWiki software and its Action API are licensed under [GPL-2.0-or-later](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
-- Wiki content on Wikipedia and most Wikimedia projects is separately licensed under [CC BY-SA](https://creativecommons.org/licenses/by-sa/4.0/) and/or [GFDL](https://www.gnu.org/licenses/fdl-1.3.html) — attribution is required when reusing article text.
-- Clients should set a descriptive \`User-Agent\` per the [Wikimedia User-Agent policy](https://meta.wikimedia.org/wiki/User-Agent_policy).
-- Respect the [Wikimedia API etiquette](https://www.mediawiki.org/wiki/API:Etiquette) for request rates and concurrency.`
-      about_md: `The [MediaWiki Action API](https://www.mediawiki.org/wiki/API:Main_page) is the long-standing HTTP interface exposed by every [MediaWiki](https://www.mediawiki.org/) installation, including [Wikipedia](https://en.wikipedia.org/) and the other [Wikimedia](https://www.wikimedia.org/) projects. All endpoints live under a single \`api.php\` entry point (for English Wikipedia, \`https://en.wikipedia.org/w/api.php\`), with the operation selected by the \`action\` query parameter.
-
-What you can do through the API:
-
-- Authenticate and manage users — \`action=login\`, \`action=logout\`, \`action=createaccount\`, \`action=clientlogin\`, plus token retrieval via \`action=query&meta=tokens\`.
-- Read and search content — \`action=query\` with \`prop=revisions|extracts|info|links|categories|images\`, \`list=search|categorymembers|allpages|backlinks\`, and \`action=opensearch\` for type-ahead suggestions.
-- Edit pages — \`action=edit\`, \`action=move\`, \`action=delete\`, \`action=protect\`, \`action=rollback\`, \`action=upload\`, \`action=purge\`.
-- Parse and expand wikitext — \`action=parse\`, \`action=expandtemplates\`.
-- Site metadata — \`action=query&meta=siteinfo|userinfo|allmessages|filerepoinfo\`.
-
-The API accepts both GET and POST (POST is required for write actions and large payloads) and can return JSON, JSONFM, XML, or PHP-serialized output via the \`format\` parameter. Anonymous reads work without credentials; edits require login plus a CSRF token. Cross-origin requests need the \`origin\` parameter. There is no fixed published rate limit on the public Wikimedia endpoints, but clients are expected to follow the [User-Agent policy](https://meta.wikimedia.org/wiki/User-Agent_policy) and avoid running requests in parallel against the same wiki.`
-      entity_desc: {
-        api: "The single `api.php` entry point that dispatches every MediaWiki Action — authentication, page queries, edits, search, and site metadata — based on the `action` parameter (for example `action=query`, `action=edit`, `action=login`, `action=opensearch`)."
-      }
-      auth: false
     }
   }
 }
+

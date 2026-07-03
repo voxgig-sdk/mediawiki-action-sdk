@@ -120,6 +120,7 @@ func apiBasicSetup(extra map[string]any) *entityTestSetup {
 		"MEDIAWIKIACTION_TEST_API_ENTID": idmap,
 		"MEDIAWIKIACTION_TEST_LIVE":      "FALSE",
 		"MEDIAWIKIACTION_TEST_EXPLAIN":   "FALSE",
+		"MEDIAWIKIACTION_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["MEDIAWIKIACTION_TEST_API_ENTID"])
@@ -130,6 +131,7 @@ func apiBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["MEDIAWIKIACTION_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["MEDIAWIKIACTION_APIKEY"],
 			},
 			extra,
 		})

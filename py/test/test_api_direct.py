@@ -59,12 +59,14 @@ def _api_direct_setup(mockres):
     env = runner.env_override({
         "MEDIAWIKIACTION_TEST_API_ENTID": {},
         "MEDIAWIKIACTION_TEST_LIVE": "FALSE",
+        "MEDIAWIKIACTION_APIKEY": "NONE",
     })
 
     live = env.get("MEDIAWIKIACTION_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("MEDIAWIKIACTION_APIKEY"),
         }
         client = MediawikiActionSDK(merged_opts)
         return {
