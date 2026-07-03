@@ -10,7 +10,7 @@ The PHP SDK for the MediawikiAction API — an entity-oriented client using PHP 
 
 ## Install
 ```bash
-composer require voxgig/mediawiki-action-sdk
+composer require voxgig-sdk/mediawiki-action
 ```
 
 

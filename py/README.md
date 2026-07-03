@@ -10,7 +10,7 @@ The Python SDK for the MediawikiAction API — an entity-oriented client followi
 
 ## Install
 ```bash
-pip install mediawiki-action-sdk
+pip install voxgig-sdk-mediawiki-action
 ```
 
 Or install from source:

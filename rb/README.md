@@ -10,13 +10,13 @@ The Ruby SDK for the MediawikiAction API — an entity-oriented client using idi
 
 ## Install
 ```bash
-gem install mediawiki-action-sdk
+gem install voxgig-sdk-mediawiki-action
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "mediawiki-action-sdk"
+gem "voxgig-sdk-mediawiki-action"
 ```
 
 Then run:

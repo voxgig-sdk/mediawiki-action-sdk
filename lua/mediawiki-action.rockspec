@@ -8,12 +8,14 @@ source = {
   dir = "mediawiki-action-sdk/lua"
 }
 description = {
-  summary = "MediawikiAction SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the MediaWiki Action public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/mediawiki-action-sdk",
+  issues_url = "https://github.com/voxgig-sdk/mediawiki-action-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "mediawiki-action" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

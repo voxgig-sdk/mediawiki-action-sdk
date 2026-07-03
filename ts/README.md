@@ -10,7 +10,7 @@ The TypeScript SDK for the MediawikiAction API — a type-safe, entity-oriented 
 
 ## Install
 ```bash
-npm install mediawiki-action
+npm install @voxgig-sdk/mediawiki-action
 ```
 ## Tutorial: your first API call
 

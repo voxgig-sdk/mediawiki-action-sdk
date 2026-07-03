@@ -10,7 +10,7 @@ The Lua SDK for the MediawikiAction API — an entity-oriented client using Lua 
 
 ## Install
 ```bash
-luarocks install mediawiki-action-sdk
+luarocks install voxgig-sdk-mediawiki-action
 ```
 
 If the module is not yet published, add the source directory to
