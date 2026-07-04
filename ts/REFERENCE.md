@@ -110,7 +110,7 @@ Alias for `MediawikiActionSDK.test()`.
 ## ApiEntity
 
 ```ts
-const api = client.api
+const api = client.Api()
 ```
 
 ### Fields
@@ -131,7 +131,7 @@ const api = client.api
 Create a new entity with the given data.
 
 ```ts
-const result = await client.api.create({
+const result = await client.Api().create({
 })
 ```
 
@@ -140,7 +140,7 @@ const result = await client.api.create({
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.api.load({ id: 'api_id' })
+const result = await client.Api().load({ id: 'api_id' })
 ```
 
 ### Common Methods

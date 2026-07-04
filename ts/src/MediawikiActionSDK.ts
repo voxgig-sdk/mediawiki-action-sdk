@@ -204,14 +204,7 @@ class MediawikiActionSDK {
 
 
 
-  _api?: ApiEntity
-
-  // Idiomatic facade: `client.api.list()` / `client.api.load({ id })`.
-  get api(): ApiEntity {
-    return (this._api ??= new ApiEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.api` instead. */
+  // Entity access: `client.Api().list()` / `client.Api().load({ id })`.
   Api(data?: any) {
     const self = this
     return new ApiEntity(self,data)

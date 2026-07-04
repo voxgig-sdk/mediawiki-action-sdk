@@ -36,10 +36,12 @@ client = MediawikiActionSDK({
 
 ### 3. Load an api
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.api.load({"id": "example_id"})
-    print(result)
+    api = client.Api().load({"id": "example_id"})
+    print(api)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -47,8 +49,8 @@ except Exception as err:
 ### 4. Create, update, and remove
 
 ```python
-# Create
-created = client.api.create({"name": "Example"})
+# Create — returns the bare created record (a dict)
+created = client.Api().create({"name": "Example"})
 
 ```
 
@@ -95,8 +97,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = MediawikiActionSDK.test()
 
-result = client.api.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+api = client.Api().load({"id": "test01"})
+# api contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -174,7 +177,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `Api` | `(data) -> ApiEntity` | Create a Api entity instance. |
+| `Api` | `(data) -> ApiEntity` | Create an Api entity instance. |
 
 ### Entity interface
 
@@ -236,7 +239,7 @@ API path: `/api.php`
 
 ### Api
 
-Create an instance: `const api = client.api`
+Create an instance: `api = client.Api()`
 
 #### Operations
 
@@ -258,14 +261,14 @@ Create an instance: `const api = client.api`
 
 #### Example: Load
 
-```ts
-const api = await client.api.load({ id: 'api_id' })
+```python
+api = client.Api().load({"id": "api_id"})
 ```
 
 #### Example: Create
 
-```ts
-const api = await client.api.create({
+```python
+api = client.Api().create({
 })
 ```
 
@@ -340,7 +343,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-api = client.api
+api = client.Api()
 api.load({"id": "example_id"})
 
 # api.data_get() now returns the loaded api data
