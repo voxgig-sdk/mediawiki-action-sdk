@@ -2,6 +2,8 @@
 
 import { ApiEntity } from './entity/ApiEntity'
 
+export type * from './MediawikiActionTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class MediawikiActionSDK {
 
 
 
+  _api?: ApiEntity
+
+  // Idiomatic facade: `client.api.list()` / `client.api.load({ id })`.
+  get api(): ApiEntity {
+    return (this._api ??= new ApiEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.api` instead. */
   Api(data?: any) {
     const self = this
     return new ApiEntity(self,data)

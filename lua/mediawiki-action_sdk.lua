@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:api():list() / client:api():load({ id = ... })
+function MediawikiActionSDK:api(data)
+  local EntityMod = require("entity.api_entity")
+  if data == nil then
+    if self._api == nil then
+      self._api = EntityMod.new(self, nil)
+    end
+    return self._api
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:api() instead.
 function MediawikiActionSDK:Api(data)
   local EntityMod = require("entity.api_entity")
   return EntityMod.new(self, data)

@@ -43,15 +43,13 @@ class ApiEntityTest extends TestCase
         $api_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.api"), "api_ref01"));
 
-        [$api_ref01_data_result, $err] = $api_ref01_ent->create($api_ref01_data, null);
-        $this->assertNull($err);
+        $api_ref01_data_result = $api_ref01_ent->create($api_ref01_data, null);
         $api_ref01_data = Helpers::to_map($api_ref01_data_result);
         $this->assertNotNull($api_ref01_data);
 
         // LOAD
         $api_ref01_match_dt0 = [];
-        [$api_ref01_data_dt0_loaded, $err] = $api_ref01_ent->load($api_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $api_ref01_data_dt0_loaded = $api_ref01_ent->load($api_ref01_match_dt0, null);
         $this->assertNotNull($api_ref01_data_dt0_loaded);
 
     }

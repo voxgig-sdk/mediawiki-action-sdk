@@ -9,9 +9,12 @@ The TypeScript SDK for the MediawikiAction API — a type-safe, entity-oriented 
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/mediawiki-action
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/mediawiki-action-sdk/releases](https://github.com/voxgig-sdk/mediawiki-action-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,17 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { MediawikiActionSDK } from 'mediawiki-action'
+import { MediawikiActionSDK } from '@voxgig-sdk/mediawiki-action'
 
 const client = new MediawikiActionSDK({
-  apikey: process.env.MEDIAWIKI-ACTION_APIKEY,
+  apikey: process.env.MEDIAWIKI_ACTION_APIKEY,
 })
 ```
 
-### 3. Load a api
+### 3. Load an api
 
 ```ts
-const result = await client.Api().load({ id: 'example_id' })
+const result = await client.api.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -41,7 +44,7 @@ if (result.ok) {
 
 ```ts
 // Create
-const created = await client.Api().create({
+const created = await client.api.create({
   name: 'Example',
 })
 
@@ -89,7 +92,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = MediawikiActionSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.api.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -106,7 +109,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.api
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -143,8 +146,8 @@ const client = new MediawikiActionSDK({
 Create a `.env.local` file at the project root:
 
 ```
-MEDIAWIKI-ACTION_TEST_LIVE=TRUE
-MEDIAWIKI-ACTION_APIKEY=<your-key>
+MEDIAWIKI_ACTION_TEST_LIVE=TRUE
+MEDIAWIKI_ACTION_APIKEY=<your-key>
 ```
 
 Then run:
@@ -281,7 +284,7 @@ API path: `/api.php`
 
 ### Api
 
-Create an instance: `const api = client.Api()`
+Create an instance: `const api = client.api`
 
 #### Operations
 
@@ -304,13 +307,13 @@ Create an instance: `const api = client.Api()`
 #### Example: Load
 
 ```ts
-const api = await client.Api().load({ id: 'api_id' })
+const api = await client.api.load({ id: 'api_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const api = await client.Api().create({
+const api = await client.api.create({
 })
 ```
 
@@ -372,7 +375,7 @@ mediawiki-action/
 Import the SDK from the package root:
 
 ```ts
-import { MediawikiActionSDK } from 'mediawiki-action'
+import { MediawikiActionSDK } from '@voxgig-sdk/mediawiki-action'
 ```
 
 ### Entity state
@@ -382,11 +385,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const api = client.api
+await api.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// api.data() now returns the loaded api data
+// api.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

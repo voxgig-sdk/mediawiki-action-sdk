@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Api,
+  ApiLoadMatch,
+  ApiCreateData,
+} from '../MediawikiActionTypes'
 
 // TODO: needs Entity superclass
-class ApiEntity extends MediawikiActionEntityBase {
+class ApiEntity extends MediawikiActionEntityBase<Api> {
 
   constructor(client: MediawikiActionSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class ApiEntity extends MediawikiActionEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: ApiLoadMatch, ctrl?: Control): Promise<Api> {
 
     const utility = this._utility
 
@@ -136,7 +141,9 @@ class ApiEntity extends MediawikiActionEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Api> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
@@ -144,7 +151,7 @@ class ApiEntity extends MediawikiActionEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: ApiCreateData, ctrl?: Control): Promise<Api> {
 
     const utility = this._utility
     const {
@@ -243,7 +250,9 @@ class ApiEntity extends MediawikiActionEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Api> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

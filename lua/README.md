@@ -9,12 +9,9 @@ The Lua SDK for the MediawikiAction API — an entity-oriented client using Lua 
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-mediawiki-action
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/mediawiki-action-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -32,14 +29,14 @@ loading a specific record.
 local sdk = require("mediawiki-action_sdk")
 
 local client = sdk.new({
-  apikey = os.getenv("MEDIAWIKI-ACTION_APIKEY"),
+  apikey = os.getenv("MEDIAWIKI_ACTION_APIKEY"),
 })
 ```
 
-### 3. Load a api
+### 3. Load an api
 
 ```lua
-local result, err = client:Api():load({ id = "example_id" })
+local result, err = client:api():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -48,7 +45,7 @@ print(result)
 
 ```lua
 -- Create
-local created, _ = client:Api():create({ name = "Example" })
+local created, _ = client:api():create({ name = "Example" })
 
 ```
 
@@ -95,7 +92,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:MediawikiAction():load({ id = "test01" })
+local result, err = client:api():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -128,8 +125,8 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-MEDIAWIKI-ACTION_TEST_LIVE=TRUE
-MEDIAWIKI-ACTION_APIKEY=<your-key>
+MEDIAWIKI_ACTION_TEST_LIVE=TRUE
+MEDIAWIKI_ACTION_APIKEY=<your-key>
 ```
 
 Then run:
@@ -234,7 +231,7 @@ API path: `/api.php`
 
 ### Api
 
-Create an instance: `const api = client.Api()`
+Create an instance: `const api = client.api`
 
 #### Operations
 
@@ -257,13 +254,13 @@ Create an instance: `const api = client.Api()`
 #### Example: Load
 
 ```ts
-const api = await client.Api().load({ id: 'api_id' })
+const api = await client.api.load({ id: 'api_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const api = await client.Api().create({
+const api = await client.api.create({
 })
 ```
 
@@ -339,11 +336,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local api = client:api()
+api:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- api:data_get() now returns the loaded api data
+-- api:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -36,15 +36,13 @@ class ApiEntityTest < Minitest::Test
     api_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.api"), "api_ref01"))
 
-    api_ref01_data_result, err = api_ref01_ent.create(api_ref01_data, nil)
-    assert_nil err
+    api_ref01_data_result = api_ref01_ent.create(api_ref01_data, nil)
     api_ref01_data = Helpers.to_map(api_ref01_data_result)
     assert !api_ref01_data.nil?
 
     # LOAD
     api_ref01_match_dt0 = {}
-    api_ref01_data_dt0_loaded, err = api_ref01_ent.load(api_ref01_match_dt0, nil)
-    assert_nil err
+    api_ref01_data_dt0_loaded = api_ref01_ent.load(api_ref01_match_dt0, nil)
     assert !api_ref01_data_dt0_loaded.nil?
 
   end

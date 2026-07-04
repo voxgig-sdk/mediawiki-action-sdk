@@ -245,6 +245,9 @@ func (sdk *MediawikiActionSDK) Direct(fetchargs map[string]any) (map[string]any,
 }
 
 
+// Api returns a Api entity bound to this client.
+// Idiomatic usage: client.Api(nil).List(nil, nil) or
+// client.Api(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MediawikiActionSDK) Api(data map[string]any) MediawikiActionEntity {
 	return NewApiEntityFunc(sdk, data)
 }

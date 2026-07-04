@@ -10,14 +10,18 @@ The Golang SDK for the MediawikiAction API — an entity-oriented client using s
 
 ## Install
 ```bash
-go get github.com/voxgig-sdk/mediawiki-action-sdk/go
+go get github.com/voxgig-sdk/mediawiki-action-sdk/go@latest
 ```
 
-If the module is not yet published to a registry, use a `replace` directive
-in your `go.mod` to point to a local checkout:
+The Go module proxy resolves the version from the `go/vX.Y.Z` GitHub
+release tag — see [Releases](https://github.com/voxgig-sdk/mediawiki-action-sdk/releases) for the available versions.
+
+To vendor from a local checkout instead, clone this repo alongside your
+project and add a `replace` directive pointing at the checked-out
+`go/` directory:
 
 ```bash
-go mod edit -replace github.com/voxgig-sdk/mediawiki-action-sdk/go=../path/to/github.com/voxgig-sdk/mediawiki-action-sdk/go
+go mod edit -replace github.com/voxgig-sdk/mediawiki-action-sdk/go=../mediawiki-action-sdk/go
 ```
 
 
@@ -41,11 +45,11 @@ import (
 
 func main() {
     client := sdk.NewMediawikiActionSDK(map[string]any{
-        "apikey": os.Getenv("MEDIAWIKI-ACTION_APIKEY"),
+        "apikey": os.Getenv("MEDIAWIKI_ACTION_APIKEY"),
     })
 ```
 
-### 3. Load a api
+### 3. Load an api
 
 ```go
     result, err = client.Api(nil).Load(
@@ -121,7 +125,7 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Planet(nil).Load(
+result, err := client.Api(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
 // result contains mock response data
@@ -156,8 +160,8 @@ client := sdk.NewMediawikiActionSDK(map[string]any{
 Create a `.env.local` file at the project root:
 
 ```
-MEDIAWIKI-ACTION_TEST_LIVE=TRUE
-MEDIAWIKI-ACTION_APIKEY=<your-key>
+MEDIAWIKI_ACTION_TEST_LIVE=TRUE
+MEDIAWIKI_ACTION_APIKEY=<your-key>
 ```
 
 Then run:
@@ -362,11 +366,11 @@ Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-moon := client.Moon(nil)
-moon.Load(map[string]any{"planet_id": "earth", "id": "luna"}, nil)
+api := client.Api(nil)
+api.Load(map[string]any{"id": "example_id"}, nil)
 
-// moon.Data() now returns the loaded moon data
-// moon.Match() returns the last match criteria
+// api.Data() now returns the loaded api data
+// api.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration
