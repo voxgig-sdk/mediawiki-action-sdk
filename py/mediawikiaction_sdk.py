@@ -221,7 +221,7 @@ class MediawikiActionSDK:
 
 
     def Api(self, data=None) -> "ApiEntity":
-        """Entity factory: client.Api().list({}) / client.Api().load({"id": ...})."""
+        """Entity factory: client.Api().list() / client.Api().load({"id": ...})."""
         from entity.api_entity import ApiEntity
         return ApiEntity(self, data)
 

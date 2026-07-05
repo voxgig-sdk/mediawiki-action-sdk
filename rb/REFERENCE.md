@@ -8,7 +8,7 @@ Complete API reference for the MediawikiAction Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'mediawiki-action_sdk'
+require_relative 'MediawikiAction_sdk'
 
 client = MediawikiActionSDK.new(options)
 ```
@@ -94,12 +94,12 @@ api = client.Api
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `batchcomplete` | ``$STRING`` | No |  |
-| `continue` | ``$OBJECT`` | No |  |
-| `edit` | ``$OBJECT`` | No |  |
-| `error` | ``$OBJECT`` | No |  |
-| `login` | ``$OBJECT`` | No |  |
-| `query` | ``$OBJECT`` | No |  |
+| `batchcomplete` | `String` | No |  |
+| `continue` | `Hash` | No |  |
+| `edit` | `Hash` | No |  |
+| `error` | `Hash` | No |  |
+| `login` | `Hash` | No |  |
+| `query` | `Hash` | No |  |
 
 ### Operations
 
@@ -117,7 +117,7 @@ result = client.Api.create({
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Api.load({ "id" => "api_id" })
+result = client.Api.load()
 ```
 
 ### Common Methods

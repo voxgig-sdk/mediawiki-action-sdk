@@ -15,8 +15,20 @@
 ---@field query? table
 
 ---@class ApiLoadMatch
+---@field batchcomplete? string
+---@field continue? table
+---@field edit? table
+---@field error? table
+---@field login? table
+---@field query? table
 
 ---@class ApiCreateData
+---@field batchcomplete? string
+---@field continue? table
+---@field edit? table
+---@field error? table
+---@field login? table
+---@field query? table
 
 local M = {}
 

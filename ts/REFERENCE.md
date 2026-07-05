@@ -117,12 +117,12 @@ const api = client.Api()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `batchcomplete` | ``$STRING`` | No |  |
-| `continue` | ``$OBJECT`` | No |  |
-| `edit` | ``$OBJECT`` | No |  |
-| `error` | ``$OBJECT`` | No |  |
-| `login` | ``$OBJECT`` | No |  |
-| `query` | ``$OBJECT`` | No |  |
+| `batchcomplete` | `string` | No |  |
+| `continue` | `Record<string, any>` | No |  |
+| `edit` | `Record<string, any>` | No |  |
+| `error` | `Record<string, any>` | No |  |
+| `login` | `Record<string, any>` | No |  |
+| `query` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -140,7 +140,7 @@ const result = await client.Api().create({
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Api().load({ id: 'api_id' })
+const result = await client.Api().load()
 ```
 
 ### Common Methods

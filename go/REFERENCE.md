@@ -98,12 +98,12 @@ api := client.Api(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `batchcomplete` | ``$STRING`` | No |  |
-| `continue` | ``$OBJECT`` | No |  |
-| `edit` | ``$OBJECT`` | No |  |
-| `error` | ``$OBJECT`` | No |  |
-| `login` | ``$OBJECT`` | No |  |
-| `query` | ``$OBJECT`` | No |  |
+| `batchcomplete` | `string` | No |  |
+| `continue` | `map[string]any` | No |  |
+| `edit` | `map[string]any` | No |  |
+| `error` | `map[string]any` | No |  |
+| `login` | `map[string]any` | No |  |
+| `query` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -121,7 +121,7 @@ result, err := client.Api(nil).Create(map[string]any{
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Api(nil).Load(map[string]any{"id": "api_id"}, nil)
+result, err := client.Api(nil).Load(nil, nil)
 ```
 
 ### Common Methods

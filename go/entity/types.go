@@ -18,8 +18,7 @@ type Api struct {
 	Query *map[string]any `json:"query,omitempty"`
 }
 
-// ApiLoadMatch mirrors the api fields as an all-optional match
-// filter (Go analog of Partial<Api>).
+// ApiLoadMatch is the typed request payload for Api.LoadTyped.
 type ApiLoadMatch struct {
 	Batchcomplete *string `json:"batchcomplete,omitempty"`
 	Continue *map[string]any `json:"continue,omitempty"`
@@ -29,8 +28,7 @@ type ApiLoadMatch struct {
 	Query *map[string]any `json:"query,omitempty"`
 }
 
-// ApiCreateData mirrors the api fields as an all-optional match
-// filter (Go analog of Partial<Api>).
+// ApiCreateData is the typed request payload for Api.CreateTyped.
 type ApiCreateData struct {
 	Batchcomplete *string `json:"batchcomplete,omitempty"`
 	Continue *map[string]any `json:"continue,omitempty"`

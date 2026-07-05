@@ -91,12 +91,12 @@ local api = client:Api(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `batchcomplete` | ``$STRING`` | No |  |
-| `continue` | ``$OBJECT`` | No |  |
-| `edit` | ``$OBJECT`` | No |  |
-| `error` | ``$OBJECT`` | No |  |
-| `login` | ``$OBJECT`` | No |  |
-| `query` | ``$OBJECT`` | No |  |
+| `batchcomplete` | `string` | No |  |
+| `continue` | `table` | No |  |
+| `edit` | `table` | No |  |
+| `error` | `table` | No |  |
+| `login` | `table` | No |  |
+| `query` | `table` | No |  |
 
 ### Operations
 
@@ -114,7 +114,7 @@ local result, err = client:Api():create({
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Api():load({ id = "api_id" })
+local result, err = client:Api():load()
 ```
 
 ### Common Methods

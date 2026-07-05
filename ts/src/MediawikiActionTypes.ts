@@ -14,7 +14,21 @@ export interface Api {
   query?: Record<string, any>
 }
 
-export type ApiLoadMatch = Partial<Api>
+export interface ApiLoadMatch {
+  batchcomplete?: string
+  continue?: Record<string, any>
+  edit?: Record<string, any>
+  error?: Record<string, any>
+  login?: Record<string, any>
+  query?: Record<string, any>
+}
 
-export type ApiCreateData = Partial<Api>
+export interface ApiCreateData {
+  batchcomplete?: string
+  continue?: Record<string, any>
+  edit?: Record<string, any>
+  error?: Record<string, any>
+  login?: Record<string, any>
+  query?: Record<string, any>
+}
 

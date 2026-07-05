@@ -8,7 +8,7 @@ Complete API reference for the MediawikiAction PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/mediawiki-action_sdk.php';
+require_once __DIR__ . '/mediawikiaction_sdk.php';
 
 $client = new MediawikiActionSDK($options);
 ```
@@ -46,11 +46,11 @@ $client = MediawikiActionSDK::test();
 
 Create a new `ApiEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): MediawikiActionUtility`
 
 Return a copy of the SDK utility object.
 
@@ -93,12 +93,12 @@ $api = $client->Api();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `batchcomplete` | ``$STRING`` | No |  |
-| `continue` | ``$OBJECT`` | No |  |
-| `edit` | ``$OBJECT`` | No |  |
-| `error` | ``$OBJECT`` | No |  |
-| `login` | ``$OBJECT`` | No |  |
-| `query` | ``$OBJECT`` | No |  |
+| `batchcomplete` | `string` | No |  |
+| `continue` | `array` | No |  |
+| `edit` | `array` | No |  |
+| `error` | `array` | No |  |
+| `login` | `array` | No |  |
+| `query` | `array` | No |  |
 
 ### Operations
 
@@ -116,24 +116,24 @@ $result = $client->Api()->create([
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Api()->load(["id" => "api_id"]);
+$result = $client->Api()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -142,7 +142,7 @@ Set the entity match criteria.
 Create a new `ApiEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

@@ -37,7 +37,7 @@ Api = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Api#load (any subset of Api fields).
+# Request payload for Api#load.
 #
 # @!attribute [rw] batchcomplete
 #   @return [String, nil]
@@ -66,7 +66,7 @@ ApiLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Api#create (any subset of Api fields).
+# Request payload for Api#create.
 #
 # @!attribute [rw] batchcomplete
 #   @return [String, nil]

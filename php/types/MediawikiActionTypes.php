@@ -23,7 +23,7 @@ class Api
     public ?array $query = null;
 }
 
-/** Match filter for Api#load (any subset of Api fields). */
+/** Request payload for Api#load. */
 class ApiLoadMatch
 {
     public ?string $batchcomplete = null;
@@ -34,7 +34,7 @@ class ApiLoadMatch
     public ?array $query = null;
 }
 
-/** Match filter for Api#create (any subset of Api fields). */
+/** Request payload for Api#create. */
 class ApiCreateData
 {
     public ?string $batchcomplete = null;

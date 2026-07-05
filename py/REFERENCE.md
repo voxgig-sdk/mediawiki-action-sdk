@@ -8,7 +8,7 @@ Complete API reference for the MediawikiAction Python SDK.
 ### Constructor
 
 ```python
-from mediawiki-action_sdk import MediawikiActionSDK
+from mediawikiaction_sdk import MediawikiActionSDK
 
 client = MediawikiActionSDK(options)
 ```
@@ -88,12 +88,12 @@ api = client.Api()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `batchcomplete` | ``$STRING`` | No |  |
-| `continue` | ``$OBJECT`` | No |  |
-| `edit` | ``$OBJECT`` | No |  |
-| `error` | ``$OBJECT`` | No |  |
-| `login` | ``$OBJECT`` | No |  |
-| `query` | ``$OBJECT`` | No |  |
+| `batchcomplete` | `str` | No |  |
+| `continue` | `dict` | No |  |
+| `edit` | `dict` | No |  |
+| `error` | `dict` | No |  |
+| `login` | `dict` | No |  |
+| `query` | `dict` | No |  |
 
 ### Operations
 
@@ -111,7 +111,7 @@ result = client.Api().create({
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Api().load({"id": "api_id"})
+result = client.Api().load()
 ```
 
 ### Common Methods
