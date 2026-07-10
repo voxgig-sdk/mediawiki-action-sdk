@@ -12,6 +12,13 @@ main: {
         name: "GPL-2.0-or-later"
         url: "https://www.gnu.org/licenses/gpl-2.0.html"
       }
+      security: {
+        in: "cookie"
+        name: "session"
+        prefix: ""
+        scheme: "cookieAuth"
+        type: "apiKey"
+      }
       servers: [
         {
           description: "Wikipedia English API (example server)"
@@ -22,9 +29,9 @@ main: {
           url: "https://www.mediawiki.org/w"
         }
       ]
+      summary: "A web service providing access to wiki features like authentication, page operations, and search."
       title: "MediaWiki Action API"
       version: "1.0.0"
+      website: "https://www.mediawiki.org/wiki/API:Main_page#"
     }
   }
-}
-

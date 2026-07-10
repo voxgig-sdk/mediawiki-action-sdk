@@ -21,7 +21,7 @@ class MediawikiActionConfig
             "options" => [
                 "base" => "https://en.wikipedia.org/w",
                 "auth" => [
-                    "prefix" => "Bearer",
+                    "prefix" => "",
                 ],
                 "headers" => [
           'content-type' => 'application/json',

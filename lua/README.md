@@ -47,7 +47,7 @@ print(api)
 
 ```lua
 -- Create
-local created, err = client:Api():create({ batchcomplete = "example", continue = {} })
+local created, err = client:Api():create({ batchcomplete = "example_batchcomplete", continue = {} })
 if err then error(err) end
 
 ```

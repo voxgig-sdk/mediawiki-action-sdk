@@ -39,7 +39,7 @@ class Config {
     base: 'https://en.wikipedia.org/w',
 
     auth: {
-      prefix: 'Bearer',
+      prefix: '',
     },
 
     headers: {

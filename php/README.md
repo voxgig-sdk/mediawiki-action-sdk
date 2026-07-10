@@ -49,7 +49,7 @@ try {
 
 ```php
 // create() returns the bare created Api record.
-$created = $client->Api()->create(["batchcomplete" => "example", "continue" => []]);
+$created = $client->Api()->create(["batchcomplete" => "example_batchcomplete", "continue" => []]);
 
 ```
 

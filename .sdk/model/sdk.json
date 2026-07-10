@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -365,6 +362,14 @@
           "name": "GPL-2.0-or-later",
           "url": "https://www.gnu.org/licenses/gpl-2.0.html"
         },
+        "meta_source": "https://www.freepublicapis.com",
+        "security": {
+          "in": "cookie",
+          "name": "session",
+          "prefix": "",
+          "scheme": "cookieAuth",
+          "type": "apiKey"
+        },
         "servers": [
           {
             "description": "Wikipedia English API (example server)",
@@ -375,8 +380,10 @@
             "url": "https://www.mediawiki.org/w"
           }
         ],
+        "summary": "A web service providing access to wiki features like authentication, page operations, and search.",
         "title": "MediaWiki Action API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://www.mediawiki.org/wiki/API:Main_page#"
       },
       "option": {},
       "target": {
@@ -429,6 +436,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -479,6 +489,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

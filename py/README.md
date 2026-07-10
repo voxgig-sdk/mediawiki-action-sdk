@@ -55,7 +55,7 @@ except Exception as err:
 
 ```python
 # Create — returns the bare created record (a dict)
-created = client.Api().create({"batchcomplete": "example", "continue": {}})
+created = client.Api().create({"batchcomplete": "example_batchcomplete", "continue": {}})
 
 ```
 

@@ -61,7 +61,7 @@ func main() {
     fmt.Println(api)
 
     // Create a api.
-    created, err := client.Api(nil).Create(map[string]any{"batchcomplete": "example", "continue": map[string]any{}}, nil)
+    created, err := client.Api(nil).Create(map[string]any{"batchcomplete": "example_batchcomplete", "continue": map[string]any{}}, nil)
     if err != nil {
         panic(err)
     }
@@ -295,8 +295,8 @@ Create an instance: `api := client.Api(nil)`
 
 | Method | Description |
 | --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 
 #### Fields
 
@@ -324,6 +324,10 @@ fmt.Println(api) // the loaded record
 ```go
 result, err := client.Api(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
