@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- MediawikiAction SDK exists test
 
 local sdk = require("mediawiki-action_sdk")
 
