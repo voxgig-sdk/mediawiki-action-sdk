@@ -62,8 +62,8 @@ function makeCtrl(explain: boolean) {
 // Overrides configuration values with environment variables if available
 function envOverride(m: Record<string, any>) {
   if (
-    'TRUE' === process.env.MEDIAWIKIACTION_TEST_LIVE ||
-    'TRUE' === process.env.MEDIAWIKIACTION_TEST_OVERRIDE
+    'TRUE' === process.env.MEDIAWIKI_ACTION_TEST_LIVE ||
+    'TRUE' === process.env.MEDIAWIKI_ACTION_TEST_OVERRIDE
   ) {
     Object.entries(m).map(n => {
       let envval = process.env[n[0]]
@@ -74,7 +74,7 @@ function envOverride(m: Record<string, any>) {
     })
   }
 
-  m.MEDIAWIKIACTION_TEST_EXPLAIN = process.env.MEDIAWIKIACTION_TEST_EXPLAIN || m.MEDIAWIKIACTION_TEST_EXPLAIN
+  m.MEDIAWIKI_ACTION_TEST_EXPLAIN = process.env.MEDIAWIKI_ACTION_TEST_EXPLAIN || m.MEDIAWIKI_ACTION_TEST_EXPLAIN
 
   return m
 }

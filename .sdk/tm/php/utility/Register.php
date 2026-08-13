@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ MediawikiActionUtility::setRegistrar(function (MediawikiActionUtility $u): void 
     $u->prepare_params = [MediawikiActionPrepareParams::class, 'call'];
     $u->prepare_path = [MediawikiActionPreparePath::class, 'call'];
     $u->prepare_query = [MediawikiActionPrepareQuery::class, 'call'];
+    $u->graphql_body = [MediawikiActionGraphql::class, 'body'];
+    $u->graphql_errors = [MediawikiActionGraphql::class, 'errors'];
     $u->result_basic = [MediawikiActionResultBasic::class, 'call'];
     $u->result_body = [MediawikiActionResultBody::class, 'call'];
     $u->result_headers = [MediawikiActionResultHeaders::class, 'call'];

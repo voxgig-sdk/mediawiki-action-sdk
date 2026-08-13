@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# MediawikiAction SDK exists test
 
 import pytest
 from mediawikiaction_sdk import MediawikiActionSDK

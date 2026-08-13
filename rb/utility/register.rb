@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ MediawikiActionUtility.registrar = ->(u) {
   u.prepare_params = MediawikiActionUtilities::PrepareParams
   u.prepare_path = MediawikiActionUtilities::PreparePath
   u.prepare_query = MediawikiActionUtilities::PrepareQuery
+  u.graphql_body = MediawikiActionUtilities::GraphqlBody
+  u.graphql_errors = MediawikiActionUtilities::GraphqlErrors
   u.result_basic = MediawikiActionUtilities::ResultBasic
   u.result_body = MediawikiActionUtilities::ResultBody
   u.result_headers = MediawikiActionUtilities::ResultHeaders

@@ -23,8 +23,8 @@ module MediawikiActionTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("MEDIAWIKIACTION_TEST_LIVE")
-    override = getenv("MEDIAWIKIACTION_TEST_OVERRIDE")
+    live = getenv("MEDIAWIKI_ACTION_TEST_LIVE")
+    override = getenv("MEDIAWIKI_ACTION_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module MediawikiActionTestRunner
       end
     end
 
-    explain = getenv("MEDIAWIKIACTION_TEST_EXPLAIN")
-    m["MEDIAWIKIACTION_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("MEDIAWIKI_ACTION_TEST_EXPLAIN")
+    m["MEDIAWIKI_ACTION_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

@@ -36,7 +36,7 @@ client = MediawikiActionSDK.new({
 
 ```ruby
 begin
-  # load returns the bare Api record (raises on error).
+  # load returns the ENTITY — call data_get for the Api record (raises on error).
   api = client.Api.load()
   puts api
 rescue => err
@@ -47,7 +47,7 @@ end
 ### 4. Create, update, and remove
 
 ```ruby
-# create returns the bare created Api record.
+# create returns the ENTITY — call data_get for the created Api record.
 created = client.Api.create({ "batchcomplete" => "example_batchcomplete", "continue" => {} })
 
 ```
@@ -127,7 +127,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = MediawikiActionSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 api = client.Api.load()
 puts api
 ```
@@ -288,7 +289,7 @@ Create an instance: `api = client.Api`
 #### Example: Load
 
 ```ruby
-# load returns the bare Api record (raises on error).
+# load returns the ENTITY — call data_get for the Api record (raises on error).
 api = client.Api.load()
 ```
 

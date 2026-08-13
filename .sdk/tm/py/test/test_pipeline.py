@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import MediawikiActionSDK
-from core.error import MediawikiActionError
-from core.result import MediawikiActionResult
-from core.response import MediawikiActionResponse
-from core.spec import MediawikiActionSpec
-from feature.base_feature import MediawikiActionBaseFeature
+from projectname_sdk.core.error import MediawikiActionError
+from projectname_sdk.core.result import MediawikiActionResult
+from projectname_sdk.core.response import MediawikiActionResponse
+from projectname_sdk.core.spec import MediawikiActionSpec
+from projectname_sdk.feature.base_feature import MediawikiActionBaseFeature
 
 
 def _client():

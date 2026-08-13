@@ -29,7 +29,7 @@ describe("ApiEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set MEDIAWIKIACTION_TEST_API_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set MEDIAWIKI_ACTION_TEST_API_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -41,7 +41,7 @@ describe("ApiEntity", function()
 
     local api_ref01_data_result, err = api_ref01_ent:create(api_ref01_data, nil)
     assert.is_nil(err)
-    api_ref01_data = helpers.to_map(api_ref01_data_result)
+    api_ref01_data = helpers.to_map(type(api_ref01_data_result) == 'table' and api_ref01_data_result.data_get and api_ref01_data_result:data_get() or api_ref01_data_result)
     assert.is_not_nil(api_ref01_data)
 
     -- LOAD
@@ -85,39 +85,39 @@ function api_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("MEDIAWIKIACTION_TEST_API_ENTID")
+  local entid_env_raw = os.getenv("MEDIAWIKI_ACTION_TEST_API_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["MEDIAWIKIACTION_TEST_API_ENTID"] = idmap,
-    ["MEDIAWIKIACTION_TEST_LIVE"] = "FALSE",
-    ["MEDIAWIKIACTION_TEST_EXPLAIN"] = "FALSE",
-    ["MEDIAWIKIACTION_APIKEY"] = "NONE",
+    ["MEDIAWIKI_ACTION_TEST_API_ENTID"] = idmap,
+    ["MEDIAWIKI_ACTION_TEST_LIVE"] = "FALSE",
+    ["MEDIAWIKI_ACTION_TEST_EXPLAIN"] = "FALSE",
+    ["MEDIAWIKI_ACTION_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["MEDIAWIKIACTION_TEST_API_ENTID"])
+    env["MEDIAWIKI_ACTION_TEST_API_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["MEDIAWIKIACTION_TEST_LIVE"] == "TRUE" then
+  if env["MEDIAWIKI_ACTION_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["MEDIAWIKIACTION_APIKEY"],
+        apikey = env["MEDIAWIKI_ACTION_APIKEY"],
       },
       extra or {},
     })
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["MEDIAWIKIACTION_TEST_LIVE"] == "TRUE"
+  local live = env["MEDIAWIKI_ACTION_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["MEDIAWIKIACTION_TEST_EXPLAIN"] == "TRUE",
+    explain = env["MEDIAWIKI_ACTION_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

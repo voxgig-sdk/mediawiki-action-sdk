@@ -51,7 +51,7 @@ try {
 ### 4. Create, update, and remove
 
 ```ts
-// Create — returns the created Api
+// Create — returns the created Api ENTITY (.data() for the record)
 const created = await client.Api().create({
   batchcomplete: 'example_batchcomplete',
   continue: {},
@@ -134,7 +134,8 @@ Create a mock client for unit testing — no server required:
 const client = MediawikiActionSDK.test()
 
 const api = await client.Api().load()
-// api is a bare entity populated with mock response data
+// api is the entity, populated with mock response data
+// — call api.data() for the record itself
 console.log(api)
 ```
 

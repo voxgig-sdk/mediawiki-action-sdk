@@ -19,11 +19,15 @@ import {
 describe('ApiDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MEDIAWIKIACTION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MEDIAWIKIACTION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MEDIAWIKI_ACTION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MEDIAWIKI_ACTION_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new MediawikiActionSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -72,19 +76,19 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'MEDIAWIKIACTION_TEST_API_ENTID': {},
-    'MEDIAWIKIACTION_TEST_LIVE': 'FALSE',
-    'MEDIAWIKIACTION_APIKEY': 'NONE',
+    'MEDIAWIKI_ACTION_TEST_API_ENTID': {},
+    'MEDIAWIKI_ACTION_TEST_LIVE': 'FALSE',
+    'MEDIAWIKI_ACTION_APIKEY': 'NONE',
   })
 
-  const live = 'TRUE' === env.MEDIAWIKIACTION_TEST_LIVE
+  const live = 'TRUE' === env.MEDIAWIKI_ACTION_TEST_LIVE
 
   if (live) {
     const client = new MediawikiActionSDK({
-      apikey: env.MEDIAWIKIACTION_APIKEY,
+      apikey: env.MEDIAWIKI_ACTION_APIKEY,
     })
 
-    let idmap: any = env['MEDIAWIKIACTION_TEST_API_ENTID']
+    let idmap: any = env['MEDIAWIKI_ACTION_TEST_API_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

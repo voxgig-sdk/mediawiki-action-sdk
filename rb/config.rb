@@ -80,6 +80,7 @@ module MediawikiActionConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api.php",
                   "parts" => [
@@ -195,6 +196,7 @@ module MediawikiActionConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api.php",
                   "parts" => [

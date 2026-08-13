@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from mediawikiaction_sdk.utility.voxgig_struct import voxgig_struct as vs
 from mediawikiaction_sdk import MediawikiActionSDK
-from core import helpers
+from mediawikiaction_sdk.core import helpers
 from test import runner
 
 
@@ -56,16 +56,16 @@ def _api_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "MEDIAWIKIACTION_TEST_API_ENTID": {},
-        "MEDIAWIKIACTION_TEST_LIVE": "FALSE",
-        "MEDIAWIKIACTION_APIKEY": "NONE",
+        "MEDIAWIKI_ACTION_TEST_API_ENTID": {},
+        "MEDIAWIKI_ACTION_TEST_LIVE": "FALSE",
+        "MEDIAWIKI_ACTION_APIKEY": "NONE",
     })
 
-    live = env.get("MEDIAWIKIACTION_TEST_LIVE") == "TRUE"
+    live = env.get("MEDIAWIKI_ACTION_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("MEDIAWIKIACTION_APIKEY"),
+            "apikey": env.get("MEDIAWIKI_ACTION_APIKEY"),
         }
         client = MediawikiActionSDK(merged_opts)
         return {

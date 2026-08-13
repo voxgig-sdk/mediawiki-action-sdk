@@ -85,6 +85,7 @@ class MediawikiActionConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/api.php',
                   'parts' => [
@@ -200,6 +201,7 @@ class MediawikiActionConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api.php',
                   'parts' => [

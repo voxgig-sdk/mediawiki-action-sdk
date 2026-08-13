@@ -43,8 +43,8 @@ class MediawikiActionTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('MEDIAWIKIACTION_TEST_LIVE');
-        $override = self::getenv('MEDIAWIKIACTION_TEST_OVERRIDE');
+        $live = self::getenv('MEDIAWIKI_ACTION_TEST_LIVE');
+        $override = self::getenv('MEDIAWIKI_ACTION_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class MediawikiActionTestRunner
             }
         }
 
-        $explain = self::getenv('MEDIAWIKIACTION_TEST_EXPLAIN');
+        $explain = self::getenv('MEDIAWIKI_ACTION_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['MEDIAWIKIACTION_TEST_EXPLAIN'] = $explain;
+            $m['MEDIAWIKI_ACTION_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

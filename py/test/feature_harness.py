@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import MediawikiActionControl
-from core.error import MediawikiActionError
-from core.result import MediawikiActionResult
-from core.spec import MediawikiActionSpec
+from mediawikiaction_sdk.config import make_config
+from mediawikiaction_sdk.features import _make_feature
+from mediawikiaction_sdk.core.control import MediawikiActionControl
+from mediawikiaction_sdk.core.error import MediawikiActionError
+from mediawikiaction_sdk.core.result import MediawikiActionResult
+from mediawikiaction_sdk.core.spec import MediawikiActionSpec
 
 
 # True when this SDK was generated with the named feature.

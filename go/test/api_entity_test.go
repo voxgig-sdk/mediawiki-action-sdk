@@ -44,7 +44,7 @@ func TestApiEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set MEDIAWIKIACTION_TEST_API_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set MEDIAWIKI_ACTION_TEST_API_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -58,7 +58,7 @@ func TestApiEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("create failed: %v", err)
 		}
-		apiRef01Data = core.ToMapAny(apiRef01DataResult)
+		apiRef01Data = core.ToMapAny(entityData(apiRef01DataResult))
 		if apiRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}
@@ -113,38 +113,38 @@ func apiBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("MEDIAWIKIACTION_TEST_API_ENTID")
+	entidEnvRaw := os.Getenv("MEDIAWIKI_ACTION_TEST_API_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"MEDIAWIKIACTION_TEST_API_ENTID": idmap,
-		"MEDIAWIKIACTION_TEST_LIVE":      "FALSE",
-		"MEDIAWIKIACTION_TEST_EXPLAIN":   "FALSE",
-		"MEDIAWIKIACTION_APIKEY":         "NONE",
+		"MEDIAWIKI_ACTION_TEST_API_ENTID": idmap,
+		"MEDIAWIKI_ACTION_TEST_LIVE":      "FALSE",
+		"MEDIAWIKI_ACTION_TEST_EXPLAIN":   "FALSE",
+		"MEDIAWIKI_ACTION_APIKEY":         "NONE",
 	})
 
-	idmapResolved := core.ToMapAny(env["MEDIAWIKIACTION_TEST_API_ENTID"])
+	idmapResolved := core.ToMapAny(env["MEDIAWIKI_ACTION_TEST_API_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["MEDIAWIKIACTION_TEST_LIVE"] == "TRUE" {
+	if env["MEDIAWIKI_ACTION_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["MEDIAWIKIACTION_APIKEY"],
+				"apikey": env["MEDIAWIKI_ACTION_APIKEY"],
 			},
 			extra,
 		})
 		client = sdk.NewMediawikiActionSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["MEDIAWIKIACTION_TEST_LIVE"] == "TRUE"
+	live := env["MEDIAWIKI_ACTION_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["MEDIAWIKIACTION_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["MEDIAWIKI_ACTION_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),
