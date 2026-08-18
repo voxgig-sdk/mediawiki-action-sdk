@@ -40,7 +40,7 @@ class MediawikiActionSDK
         $utility = new MediawikiActionUtility();
         $this->_utility = $utility;
 
-        $config = MediawikiActionConfig::make_config();
+        $config = MediawikiActionConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

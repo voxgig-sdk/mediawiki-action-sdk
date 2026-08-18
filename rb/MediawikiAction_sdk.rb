@@ -28,7 +28,7 @@ class MediawikiActionSDK
     utility = MediawikiActionUtility.new
     @_utility = utility
 
-    config = MediawikiActionConfig.make_config
+    config = MediawikiActionConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
