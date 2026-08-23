@@ -33,6 +33,9 @@ class MediawikiActionConfig
         return [
             "main" => [
                 "name" => "MediawikiAction",
+                "slug" => "mediawiki-action",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
