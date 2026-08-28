@@ -24,12 +24,17 @@ type Api struct {
 
 // ApiLoadMatch is the typed request payload for Api.LoadTyped.
 type ApiLoadMatch struct {
-	Batchcomplete *string `json:"batchcomplete,omitempty"`
-	Continue *map[string]any `json:"continue,omitempty"`
-	Edit *map[string]any `json:"edit,omitempty"`
-	Error *map[string]any `json:"error,omitempty"`
-	Login *map[string]any `json:"login,omitempty"`
-	Query *map[string]any `json:"query,omitempty"`
+	Action string `json:"action"`
+	Continue *string `json:"continue,omitempty"`
+	Format *string `json:"format,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	List *string `json:"list,omitempty"`
+	Meta *string `json:"meta,omitempty"`
+	Pageid *string `json:"pageid,omitempty"`
+	Prop *string `json:"prop,omitempty"`
+	Redirect *bool `json:"redirect,omitempty"`
+	Search *string `json:"search,omitempty"`
+	Title *string `json:"title,omitempty"`
 }
 
 // ApiCreateData is the typed request payload for Api.CreateTyped.

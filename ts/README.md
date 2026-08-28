@@ -41,7 +41,7 @@ const client = new MediawikiActionSDK({
 
 ```ts
 try {
-  const api = await client.Api().load()
+  const api = await client.Api().load({ action: 'example_action' })
   console.log(api)
 } catch (err) {
   console.error('load failed:', err)
@@ -66,7 +66,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const api = await client.Api().load()
+  const api = await client.Api().load({ action: "example" })
   console.log(api)
 } catch (err) {
   console.error('load failed:', err)
@@ -133,7 +133,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = MediawikiActionSDK.test()
 
-const api = await client.Api().load()
+const api = await client.Api().load({ action: 'example_action' })
 // api is the entity, populated with mock response data
 // — call api.data() for the record itself
 console.log(api)
@@ -154,7 +154,7 @@ Entity instances remember their last match and data:
 const entity = client.Api()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.load({ action: 'example_action' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -344,7 +344,7 @@ Create an instance: `const api = client.Api()`
 #### Example: Load
 
 ```ts
-const api = await client.Api().load()
+const api = await client.Api().load({ action: 'action' })
 ```
 
 #### Example: Create
@@ -353,6 +353,29 @@ const api = await client.Api().load()
 const api = await client.Api().create({
 })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -425,7 +448,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const api = client.Api()
-await api.load()
+await api.load({ action: "example" })
 
 // api.data() now returns the api data from the last `load`
 // api.match() returns the last match criteria

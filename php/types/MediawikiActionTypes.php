@@ -26,12 +26,17 @@ class Api
 /** Request payload for Api#load. */
 class ApiLoadMatch
 {
-    public ?string $batchcomplete = null;
-    public ?array $continue = null;
-    public ?array $edit = null;
-    public ?array $error = null;
-    public ?array $login = null;
-    public ?array $query = null;
+    public string $action;
+    public ?string $continue = null;
+    public ?string $format = null;
+    public ?int $limit = null;
+    public ?string $list = null;
+    public ?string $meta = null;
+    public ?string $pageid = null;
+    public ?string $prop = null;
+    public ?bool $redirect = null;
+    public ?string $search = null;
+    public ?string $title = null;
 }
 
 /** Request payload for Api#create. */

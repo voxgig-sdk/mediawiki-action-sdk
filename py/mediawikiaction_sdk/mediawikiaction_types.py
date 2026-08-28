@@ -24,12 +24,20 @@ class Api(TypedDict, total=False):
     query: dict
 
 
-class ApiLoadMatch(TypedDict, total=False):
-    batchcomplete: str
-    edit: dict
-    error: dict
-    login: dict
-    query: dict
+class ApiLoadMatchRequired(TypedDict):
+    action: str
+
+
+class ApiLoadMatch(ApiLoadMatchRequired, total=False):
+    format: str
+    limit: int
+    list: str
+    meta: str
+    pageid: str
+    prop: str
+    redirect: bool
+    search: str
+    title: str
 
 
 class ApiCreateData(TypedDict, total=False):

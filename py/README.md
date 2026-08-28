@@ -45,7 +45,7 @@ client = MediawikiActionSDK({
 
 ```python
 try:
-    api = client.Api().load()
+    api = client.Api().load({"action": "example_action"})
     print(api)
 except Exception as err:
     print(f"load failed: {err}")
@@ -66,7 +66,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    api = client.Api().load()
+    api = client.Api().load({"action": "example"})
     print(api)
 except Exception as err:
     print(f"load failed: {err}")
@@ -135,7 +135,7 @@ client = MediawikiActionSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-api = client.Api().load()
+api = client.Api().load({"action": "example"})
 # api contains the mock response record
 ```
 
@@ -296,7 +296,7 @@ Create an instance: `api = client.Api()`
 #### Example: Load
 
 ```python
-api = client.Api().load()
+api = client.Api().load({"action": "action"})
 ```
 
 #### Example: Create
@@ -305,6 +305,29 @@ api = client.Api().load()
 api = client.Api().create({
 })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -383,7 +406,7 @@ stores the returned data and match criteria internally.
 
 ```python
 api = client.Api()
-api.load()
+api.load({"action": "example"})
 
 # api.data_get() now returns the api data from the last load
 # api.match_get() returns the last match criteria

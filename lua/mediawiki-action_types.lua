@@ -15,12 +15,17 @@
 ---@field query? table
 
 ---@class ApiLoadMatch
----@field batchcomplete? string
----@field continue? table
----@field edit? table
----@field error? table
----@field login? table
----@field query? table
+---@field action string
+---@field continue? string
+---@field format? string
+---@field limit? number
+---@field list? string
+---@field meta? string
+---@field pageid? string
+---@field prop? string
+---@field redirect? boolean
+---@field search? string
+---@field title? string
 
 ---@class ApiCreateData
 ---@field batchcomplete? string
