@@ -70,13 +70,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api.php",
-                ["parts"] = {
-                  "api.php",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api.php",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "api.php",
                 },
               },
             },
@@ -162,8 +167,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api.php",
-                ["parts"] = {
-                  "api.php",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api.php",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -183,6 +190,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "api.php",
                 },
               },
             },

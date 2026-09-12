@@ -96,13 +96,18 @@ class MediawikiActionConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/api.php',
-                  'parts' => [
-                    'api.php',
+                  'segments' => [
+                    [
+                      'lit' => 'api.php',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'api.php',
                   ],
                 ],
               ],
@@ -188,8 +193,10 @@ class MediawikiActionConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api.php',
-                  'parts' => [
-                    'api.php',
+                  'segments' => [
+                    [
+                      'lit' => 'api.php',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -209,6 +216,9 @@ class MediawikiActionConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'api.php',
                   ],
                 ],
               ],

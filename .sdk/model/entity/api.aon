@@ -45,8 +45,10 @@ main: kit: entity: api: {
         {
           method: "POST"
           orig: "/api.php"
-          parts: [
-            "api.php"
+          segments: [
+            {
+              lit: "api.php"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -144,8 +146,10 @@ main: kit: entity: api: {
           }
           method: "GET"
           orig: "/api.php"
-          parts: [
-            "api.php"
+          segments: [
+            {
+              lit: "api.php"
+            }
           ]
           select: {
             exist: [

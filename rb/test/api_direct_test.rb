@@ -61,15 +61,17 @@ def api_direct_setup(mockres)
   env = Runner.env_override({
     "MEDIAWIKI_ACTION_TEST_API_ENTID" => {},
     "MEDIAWIKI_ACTION_TEST_LIVE" => "FALSE",
-    "MEDIAWIKI_ACTION_APIKEY" => "NONE",
+    "MEDIAWIKI_ACTION_APIKEY" => "",
   })
 
   live = env["MEDIAWIKI_ACTION_TEST_LIVE"] == "TRUE"
 
   if live
-    merged_opts = {
+    # Merged so the generated fields win: sdk-test-control.json's
+    # test.client.options adds to the live client, it does not redirect it.
+    merged_opts = Runner.live_client_options.merge({
       "apikey" => env["MEDIAWIKI_ACTION_APIKEY"],
-    }
+    })
     client = MediawikiActionSDK.new(merged_opts)
     return {
       client: client,
