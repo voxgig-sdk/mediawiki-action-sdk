@@ -105,7 +105,7 @@ local result, err = client:Api():load({ action = "example" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/mediawiki-action` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mediawiki-action-sdk/releases) |
+| TypeScript | `@voxgig-sdk/mediawiki-action-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mediawiki-action-sdk/releases) |
 | Python | `voxgig-sdk-mediawiki-action` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mediawiki-action-sdk/releases) |
 | PHP | `voxgig-sdk/mediawiki-action` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mediawiki-action-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/mediawiki-action-sdk/go` | `go get github.com/voxgig-sdk/mediawiki-action-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Api():load({ action = "example" })
 ### TypeScript
 
 ```ts
-import { MediawikiActionSDK } from '@voxgig-sdk/mediawiki-action'
+import { MediawikiActionSDK } from '@voxgig-sdk/mediawiki-action-sdk'
 
 const client = new MediawikiActionSDK({
   apikey: process.env.MEDIAWIKI_ACTION_APIKEY,

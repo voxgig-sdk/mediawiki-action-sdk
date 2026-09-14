@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { MediawikiActionSDK } from '@voxgig-sdk/mediawiki-action'
+import { MediawikiActionSDK } from '@voxgig-sdk/mediawiki-action-sdk'
 
 const client = new MediawikiActionSDK({
   apikey: process.env.MEDIAWIKI_ACTION_APIKEY,
@@ -437,7 +437,7 @@ mediawiki-action/
 Import the SDK from the package root:
 
 ```ts
-import { MediawikiActionSDK } from '@voxgig-sdk/mediawiki-action'
+import { MediawikiActionSDK } from '@voxgig-sdk/mediawiki-action-sdk'
 ```
 
 ### Entity state
