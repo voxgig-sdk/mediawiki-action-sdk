@@ -1,12 +1,18 @@
 # MediawikiAction SDK feature factory
 
 from mediawikiaction_sdk.feature.base_feature import MediawikiActionBaseFeature
+from mediawikiaction_sdk.feature.ratelimit_feature import MediawikiActionRatelimitFeature
+from mediawikiaction_sdk.feature.retry_feature import MediawikiActionRetryFeature
 from mediawikiaction_sdk.feature.test_feature import MediawikiActionTestFeature
+from mediawikiaction_sdk.feature.timeout_feature import MediawikiActionTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: MediawikiActionBaseFeature(),
+    "ratelimit": lambda: MediawikiActionRatelimitFeature(),
+    "retry": lambda: MediawikiActionRetryFeature(),
     "test": lambda: MediawikiActionTestFeature(),
+    "timeout": lambda: MediawikiActionTimeoutFeature(),
 }
 
 
