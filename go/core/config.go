@@ -81,6 +81,8 @@ func MakeConfig() map[string]any {
 			"base": "https://en.wikipedia.org/w",
 			"auth": map[string]any{
 				"prefix": "",
+				"in": "cookie",
+				"name": "session",
 			},
 			"headers": map[string]any{
 				"content-type": "application/json",

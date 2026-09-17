@@ -77,6 +77,8 @@ local function make_config()
       base = "https://en.wikipedia.org/w",
       auth = {
         prefix = "",
+        ["in"] = "cookie",
+        name = "session",
       },
       headers = {
         ["content-type"] = "application/json",
