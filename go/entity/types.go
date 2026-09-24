@@ -1,7 +1,7 @@
 // Typed models for the MediawikiAction SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,12 +14,6 @@ import (
 
 // Api is the typed data model for the api entity.
 type Api struct {
-	Batchcomplete *string `json:"batchcomplete,omitempty"`
-	Continue *map[string]any `json:"continue,omitempty"`
-	Edit *map[string]any `json:"edit,omitempty"`
-	Error *map[string]any `json:"error,omitempty"`
-	Login *map[string]any `json:"login,omitempty"`
-	Query *map[string]any `json:"query,omitempty"`
 }
 
 // ApiLoadMatch is the typed request payload for Api.LoadTyped.

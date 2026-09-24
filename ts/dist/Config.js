@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -119,26 +112,32 @@ class Config {
             "fields": [
                 {
                     "name": "batchcomplete",
+                    "title": "Batchcomplete",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "continue",
+                    "title": "Continue",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "edit",
+                    "title": "Edit",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "error",
+                    "title": "Error",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "login",
+                    "title": "Login",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "query",
+                    "title": "Query",
                     "type": "`$OBJECT`"
                 }
             ],
@@ -149,7 +148,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/api.php",
@@ -158,14 +156,16 @@ class Config {
                                     "lit": "api.php"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "api.php"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "api.php"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 },
@@ -174,79 +174,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "action",
-                                        "orig": "action",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "continue",
-                                        "orig": "continue",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": "json",
-                                        "kind": "query",
-                                        "name": "format",
-                                        "orig": "format",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 10,
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "list",
-                                        "orig": "list",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "meta",
-                                        "orig": "meta",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "pageid",
-                                        "orig": "pageid",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "prop",
-                                        "orig": "prop",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "redirect",
-                                        "orig": "redirect",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "search",
-                                        "orig": "search",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "title",
-                                        "orig": "title",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api.php",
@@ -255,6 +182,87 @@ class Config {
                                     "lit": "api.php"
                                 }
                             ],
+                            "parts": [
+                                "api.php"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "action",
+                                        "orig": "action",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "continue",
+                                        "orig": "continue",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "format",
+                                        "orig": "format",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "json"
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 10
+                                    },
+                                    {
+                                        "name": "list",
+                                        "orig": "list",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "meta",
+                                        "orig": "meta",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "pageid",
+                                        "orig": "pageid",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "prop",
+                                        "orig": "prop",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "redirect",
+                                        "orig": "redirect",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "search",
+                                        "orig": "search",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "title",
+                                        "orig": "title",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "action",
@@ -269,14 +277,7 @@ class Config {
                                     "search",
                                     "title"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "api.php"
-                            ]
+                            }
                         }
                     ]
                 }

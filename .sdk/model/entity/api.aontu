@@ -1,0 +1,196 @@
+# Entity: api
+
+main: kit: entity: api: {
+
+  alias: field: {}
+
+  fields: {
+    batchcomplete: {
+      h: "Batchcomplete"
+      n: "batchcomplete"
+      r: false
+      t: "`$STRING`"
+    }
+    continue: {
+      h: "Continue"
+      n: "continue"
+      r: false
+      t: "`$OBJECT`"
+    }
+    edit: {
+      h: "Edit"
+      n: "edit"
+      r: false
+      t: "`$OBJECT`"
+    }
+    error: {
+      h: "Error"
+      n: "error"
+      r: false
+      t: "`$OBJECT`"
+    }
+    login: {
+      h: "Login"
+      n: "login"
+      r: false
+      t: "`$OBJECT`"
+    }
+    query: {
+      h: "Query"
+      n: "query"
+      r: false
+      t: "`$OBJECT`"
+    }
+  }
+
+  name: "api"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api.php"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api.php"
+          s: [
+            {
+              lit: "api.php"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api.php"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "action"
+                or: "action"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "continue"
+                or: "continue"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "json"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 10
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "list"
+                or: "list"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "meta"
+                or: "meta"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "pageid"
+                or: "pageid"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "prop"
+                or: "prop"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "redirect"
+                or: "redirect"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "search"
+                or: "search"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "title"
+                or: "title"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api.php"
+          q: {
+            exist: [
+              "action"
+              "continue"
+              "format"
+              "limit"
+              "list"
+              "meta"
+              "pageid"
+              "prop"
+              "redirect"
+              "search"
+              "title"
+            ]
+          }
+          s: [
+            {
+              lit: "api.php"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

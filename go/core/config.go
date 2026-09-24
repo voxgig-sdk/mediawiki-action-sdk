@@ -96,26 +96,32 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "batchcomplete",
+						"title": "Batchcomplete",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "continue",
+						"title": "Continue",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "edit",
+						"title": "Edit",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "error",
+						"title": "Error",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "login",
+						"title": "Login",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "query",
+						"title": "Query",
 						"type": "`$OBJECT`",
 					},
 				},
@@ -126,7 +132,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/api.php",
@@ -135,14 +140,16 @@ func MakeConfig() map[string]any {
 										"lit": "api.php",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"api.php",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"api.php",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -151,85 +158,93 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "action",
-											"orig": "action",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "continue",
-											"orig": "continue",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "json",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 10,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "list",
-											"orig": "list",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "meta",
-											"orig": "meta",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "pageid",
-											"orig": "pageid",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "prop",
-											"orig": "prop",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "redirect",
-											"orig": "redirect",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "search",
-											"orig": "search",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "title",
-											"orig": "title",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api.php",
 								"segments": []any{
 									map[string]any{
 										"lit": "api.php",
+									},
+								},
+								"parts": []any{
+									"api.php",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "action",
+											"orig": "action",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "continue",
+											"orig": "continue",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "json",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 10,
+										},
+										map[string]any{
+											"name": "list",
+											"orig": "list",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "meta",
+											"orig": "meta",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "pageid",
+											"orig": "pageid",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "prop",
+											"orig": "prop",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "redirect",
+											"orig": "redirect",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "search",
+											"orig": "search",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "title",
+											"orig": "title",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -246,13 +261,6 @@ func MakeConfig() map[string]any {
 										"search",
 										"title",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"api.php",
 								},
 							},
 						},

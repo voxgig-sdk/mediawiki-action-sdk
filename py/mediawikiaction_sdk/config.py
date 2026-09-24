@@ -121,26 +121,32 @@ def make_config():
         "fields": [
           {
             "name": "batchcomplete",
+            "title": "Batchcomplete",
             "type": "`$STRING`",
           },
           {
             "name": "continue",
+            "title": "Continue",
             "type": "`$OBJECT`",
           },
           {
             "name": "edit",
+            "title": "Edit",
             "type": "`$OBJECT`",
           },
           {
             "name": "error",
+            "title": "Error",
             "type": "`$OBJECT`",
           },
           {
             "name": "login",
+            "title": "Login",
             "type": "`$OBJECT`",
           },
           {
             "name": "query",
+            "title": "Query",
             "type": "`$OBJECT`",
           },
         ],
@@ -151,7 +157,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {},
                 "kind": "http",
                 "method": "POST",
                 "orig": "/api.php",
@@ -160,14 +165,16 @@ def make_config():
                     "lit": "api.php",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "api.php",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "api.php",
-                ],
+                "args": {},
+                "select": {},
               },
             ],
           },
@@ -176,79 +183,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "action",
-                      "orig": "action",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "continue",
-                      "orig": "continue",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "json",
-                      "kind": "query",
-                      "name": "format",
-                      "orig": "format",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": 10,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "list",
-                      "orig": "list",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "meta",
-                      "orig": "meta",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "pageid",
-                      "orig": "pageid",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "prop",
-                      "orig": "prop",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "redirect",
-                      "orig": "redirect",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "search",
-                      "orig": "search",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "title",
-                      "orig": "title",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api.php",
@@ -257,6 +191,87 @@ def make_config():
                     "lit": "api.php",
                   },
                 ],
+                "parts": [
+                  "api.php",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "action",
+                      "orig": "action",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "continue",
+                      "orig": "continue",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "format",
+                      "orig": "format",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "json",
+                    },
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 10,
+                    },
+                    {
+                      "name": "list",
+                      "orig": "list",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "meta",
+                      "orig": "meta",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "pageid",
+                      "orig": "pageid",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "prop",
+                      "orig": "prop",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "redirect",
+                      "orig": "redirect",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "search",
+                      "orig": "search",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "title",
+                      "orig": "title",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "action",
@@ -272,13 +287,6 @@ def make_config():
                     "title",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "api.php",
-                ],
               },
             ],
           },
